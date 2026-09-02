@@ -1,0 +1,38 @@
+name: WatchPost
+version: '${version}'
+main: dev.watchpost.WatchPostPlugin
+api-version: '1.21'
+description: Security cameras and monitors. No entities, no NMS, no authlib.
+authors: [arvidhqx-commits]
+commands:
+  watchpost:
+    description: WatchPost commands
+    aliases: [cams, cctv]
+    usage: /watchpost
+permissions:
+  watchpost.admin:
+    description: Full access including reload and import
+    default: op
+    children:
+      watchpost.camera.create: true
+      watchpost.camera.delete: true
+      watchpost.camera.list: true
+      watchpost.group.manage: true
+      watchpost.monitor.create: true
+      watchpost.view: true
+  watchpost.camera.create:
+    default: op
+  watchpost.camera.delete:
+    default: op
+  watchpost.camera.list:
+    default: op
+  watchpost.group.manage:
+    default: op
+  watchpost.monitor.create:
+    default: op
+  watchpost.view:
+    description: View a camera by command
+    default: op
+  watchpost.monitor.use:
+    description: Use a placed monitor block
+    default: true

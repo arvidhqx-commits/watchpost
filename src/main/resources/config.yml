@@ -1,0 +1,78 @@
+# WatchPost -- Ueberwachungskameras ohne NMS, ohne Entities, ohne authlib.
+#
+# Zum Nachlesen: waehrend des Kamerablicks ist der Spieler im Zuschauermodus.
+# Der Zuschauermodus sieht durch Waende. Wer eine Kamera setzen darf, entscheidet
+# also mit, wer wohin sehen kann -- vergib watchpost.camera.create bewusst.
+
+view:
+  # Nach so vielen Sekunden endet der Blick von selbst. 0 = ohne Zeitgrenze.
+  max-seconds: 300
+  # Nachtsicht waehrend des Blicks (wird beim Aussteigen wieder entfernt,
+  # aber nur, wenn WatchPost sie selbst gesetzt hat).
+  night-vision: true
+  # Schleichen beendet den Blick.
+  exit-on-sneak: true
+  # Mausrad wechselt zur naechsten Kamera derselben Gruppe.
+  switch-with-hotbar: true
+  # Waehrend des Blicks sind fremde Befehle gesperrt (eigene bleiben erlaubt).
+  block-commands: true
+
+monitor:
+  # Neu gesetzte Monitore sind fuer alle mit watchpost.monitor.use nutzbar.
+  public-by-default: true
+
+messages:
+  help:
+    - "<gray>WatchPost <white>/watchpost camera create <name>"
+    - "<gray>  /watchpost camera list | delete <name> | enable <name> | disable <name>"
+    - "<gray>  /watchpost group create <name> | add <group> <camera> | list"
+    - "<gray>  /watchpost monitor create <group>  (Block anschauen)"
+    - "<gray>  /watchpost view <name> | next | prev | leave"
+    - "<gray>  /watchpost import   (uebernimmt Daten von CCTV)"
+  no-permission: "<red>Dazu fehlt dir die Berechtigung."
+  reloaded: "<green>WatchPost neu geladen."
+  viewing: "<green>Kamera <white>%camera%<green>. Schleichen beendet den Blick."
+  switched: "<gray>Kamera <white>%camera%"
+  left: "<gray>Kamerablick beendet (<white>%camera%<gray>)."
+  restored: "<yellow>Du warst beim letzten Neustart in einer Kamera. Position und Spielmodus sind wiederhergestellt."
+  not-viewing: "<red>Du siehst gerade durch keine Kamera."
+  no-cycle: "<red>Kein Kamerawechsel moeglich -- diese Kamera gehoert zu keiner Gruppe."
+  commands-blocked: "<red>Waehrend des Kamerablicks gesperrt. Schleiche oder nutze /watchpost leave."
+  no-such-camera: "<red>Keine Kamera namens <white>%camera%<red>."
+  camera-disabled: "<red>Die Kamera <white>%camera%<red> ist abgeschaltet."
+  camera-world-missing: "<red>Die Welt dieser Kamera ist nicht geladen."
+  bad-name: "<red>Ungueltiger Name <white>%name%<red>. Erlaubt sind Buchstaben, Ziffern, _ und -, hoechstens 32 Zeichen."
+  camera-exists: "<red>Es gibt schon eine Kamera <white>%camera%<red>."
+  camera-created: "<green>Kamera <white>%camera%<green> gesetzt -- an deiner Blickrichtung ausgerichtet."
+  camera-in-block: "<yellow>Hinweis: <white>%camera%<yellow> steckt in einem Block -- das Bild bleibt schwarz. Setze sie in die Luft."
+  camera-deleted: "<green>Kamera <white>%camera%<green> geloescht."
+  camera-enabled: "<green>Kamera <white>%camera%<green> eingeschaltet."
+  camera-disabled-ok: "<green>Kamera <white>%camera%<green> abgeschaltet."
+  camera-list-head: "<gray>%count% Kamera(s):"
+  camera-list-line: "<gray>- <white>%camera% <gray>(%world% %x% %y% %z%) %state%"
+  state-on: "<green>an"
+  state-off: "<red>aus"
+  usage-camera: "<gray>/watchpost camera create|delete|list|enable|disable [name]"
+  usage-group: "<gray>/watchpost group create|delete|add|remove|list [gruppe] [kamera]"
+  usage-monitor: "<gray>/watchpost monitor create <gruppe> | delete  (Block anschauen)"
+  usage-view: "<gray>/watchpost view <kamera>"
+  no-such-group: "<red>Keine Gruppe namens <white>%group%<red>."
+  group-exists: "<red>Es gibt schon eine Gruppe <white>%group%<red>."
+  group-created: "<green>Gruppe <white>%group%<green> angelegt."
+  group-deleted: "<green>Gruppe <white>%group%<green> geloescht."
+  group-added: "<green>Kamera <white>%camera%<green> ist jetzt in <white>%group%<green>."
+  group-removed: "<green>Kamera <white>%camera%<green> aus <white>%group%<green> entfernt."
+  group-list-head: "<gray>%count% Gruppe(n):"
+  group-list-line: "<gray>- <white>%group% <gray>(%count% Kameras)"
+  monitor-created: "<green>Monitor gesetzt, Gruppe <white>%group%<green>. Rechtsklick oeffnet ihn."
+  monitor-removed: "<green>Monitor entfernt."
+  monitor-none-here: "<red>Auf diesem Block liegt kein Monitor."
+  monitor-no-block: "<red>Schau den Block an, der zum Monitor werden soll (max. 6 Bloecke)."
+  monitor-no-group: "<red>Diesem Monitor ist keine Gruppe zugeordnet."
+  monitor-locked: "<red>Du stehst nicht auf der Liste dieses Monitors."
+  monitor-protected: "<red>Das ist ein Monitor. Zum Abbauen brauchst du watchpost.monitor.create."
+  gui-title: "<dark_gray>Monitor: <white>%group%"
+  gui-camera: "<white>%camera%"
+  gui-world-missing: "<red>Welt nicht geladen"
+  import-nothing: "<red>Nichts zu uebernehmen -- <white>%path%<red> gibt es nicht."
+  import-done: "<green>Uebernommen: <white>%cameras%<green> Kameras, <white>%groups%<green> Gruppen, <white>%monitors%<green> Monitore."
